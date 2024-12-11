@@ -34,8 +34,7 @@ def detect_objects():
     # 신뢰도
     confidence_threshold = 0.5
     
-    # font_path = "/System/Library/Fonts/Supplemental/Arial.ttf"  
-    # font = ImageFont.truetype(font_path, 20)
+    font = ImageFont.load_default()
     
     # 결과를 JSON 형식으로 변환
     detected_objects = []
@@ -82,10 +81,10 @@ def detect_objects():
         draw.rectangle([x_min, y_min, x_max, y_max], outline=main_color, width=10)
 
         # 클래스 이름과 신뢰도를 박스 위에 추가 (옵션)
-        # if confidence is not None and class_idx is not None:
-        #     label = f"{class_name} {confidence:.2f}"
-        #     text_position = (x_min, y_min - 10)  # 텍스트 위치
-        #     draw.text(text_position, label, fill="red",font=font)
+        if confidence is not None and class_idx is not None:
+            label = f"{class_name} {confidence:.2f}"
+            text_position = (x_min, y_min - 10)  # 텍스트 위치
+            draw.text(text_position, label, fill="red",font=font)
 
     # 결과 이미지를 저장
     output_image_path = "./detected_image1.png"  # 저장할 이미지 경로
@@ -97,7 +96,7 @@ def detect_objects():
         'detections': detected_objects,
         'total_detections': len(detected_objects)
     }
-
+    print(response);
 
     return jsonify(response), 200
 
