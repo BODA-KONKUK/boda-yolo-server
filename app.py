@@ -113,4 +113,4 @@ def get_main_color(image, num_colors=1):
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5001, debug=True)
+    app.run('0.0.0.0', port=8080, debug=True)
