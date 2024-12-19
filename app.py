@@ -48,7 +48,7 @@ def detect_objects():
         print(f"Original image size: {input_image.size}")
 
         # 가로와 세로를 변경 (90도 회전)
-        input_image = input_image.transpose(Image.ROTATE_90)
+        input_image = input_image.transpose(Image.ROTATE_270)
         print(f"Rotated image size: {input_image.size}")
     except Exception as e:
         return jsonify({'error': f'Invalid image format: {str(e)}'}), 400
