@@ -204,65 +204,64 @@ def rgb_to_color_name(rgb):
     """Convert RGB to a refined color name with range conditions."""
     r, g, b = rgb
     print(f"RGB: {r}, {g}, {b}")
-    
     # 밝은 색 계열
-    if 210 <= r <= 255 and 210 <= g <= 255 and 210 <= b <= 255:
+    if 230 <= r <= 255 and 230 <= g <= 255 and 230 <= b <= 255:
         return "흰색"
-    elif 210 <= r <= 255 and 0 <= g <= 80 and 0 <= b <= 80:
+    elif 230 <= r <= 255 and 0 <= g <= 100 and 0 <= b <= 100:
         return "밝은 빨간색"
-    elif 210 <= r <= 255 and 80 <= g <= 165 and 0 <= b <= 80:
+    elif 230 <= r <= 255 and 100 < g <= 180 and 0 <= b <= 100:
         return "밝은 주황색"
-    elif 210 <= r <= 255 and 165 <= g <= 255 and 0 <= b <= 80:
+    elif 230 <= r <= 255 and 180 < g <= 255 and 0 <= b <= 100:
         return "밝은 노란색"
-    elif 0 <= r <= 80 and 210 <= g <= 255 and 0 <= b <= 80:
+    elif 0 <= r <= 100 and 230 <= g <= 255 and 0 <= b <= 100:
         return "밝은 초록색"
-    elif 0 <= r <= 80 and 0 <= g <= 80 and 210 <= b <= 255:
+    elif 0 <= r <= 100 and 0 <= g <= 100 and 230 <= b <= 255:
         return "밝은 파랑색"
-    elif 0 <= r <= 80 and 210 <= g <= 255 and 210 <= b <= 255:
+    elif 0 <= r <= 100 and 230 <= g <= 255 and 230 <= b <= 255:
         return "밝은 청록색"
-    elif 210 <= r <= 255 and 0 <= g <= 80 and 210 <= b <= 255:
+    elif 230 <= r <= 255 and 0 <= g <= 100 and 230 <= b <= 255:
         return "밝은 보라색"
-    elif 210 <= r <= 255 and 210 <= g <= 255 and 210 <= b <= 255:
+    elif 230 <= r <= 255 and 150 <= g <= 230 and 200 <= b <= 255:
         return "밝은 분홍색"
 
     # 중간 색 계열
-    elif 165 <= r <= 210 and 165 <= g <= 210 and 165 <= b <= 210:
-        return "회색"
-    elif 165 <= r <= 210 and 0 <= g <= 80 and 0 <= b <= 80:
+    elif 150 <= r < 230 and 150 <= g < 230 and 150 <= b < 230:
+        return "중간 회색"
+    elif 150 <= r < 230 and 0 <= g <= 100 and 0 <= b <= 100:
         return "중간 빨간색"
-    elif 165 <= r <= 210 and 80 <= g <= 165 and 0 <= b <= 80:
+    elif 150 <= r < 230 and 100 < g <= 180 and 0 <= b <= 100:
         return "중간 주황색"
-    elif 165 <= r <= 210 and 165 <= g <= 210 and 0 <= b <= 80:
+    elif 150 <= r < 230 and 180 < g <= 230 and 0 <= b <= 100:
         return "중간 노란색"
-    elif 0 <= r <= 80 and 165 <= g <= 210 and 0 <= b <= 80:
+    elif 0 <= r <= 100 and 150 <= g < 230 and 0 <= b <= 100:
         return "중간 초록색"
-    elif 0 <= r <= 80 and 0 <= g <= 80 and 165 <= b <= 210:
+    elif 0 <= r <= 100 and 0 <= g <= 100 and 150 <= b < 230:
         return "중간 파랑색"
-    elif 0 <= r <= 80 and 165 <= g <= 210 and 165 <= b <= 210:
+    elif 0 <= r <= 100 and 150 <= g < 230 and 150 <= b < 230:
         return "중간 청록색"
-    elif 165 <= r <= 210 and 0 <= g <= 80 and 165 <= b <= 210:
+    elif 150 <= r < 230 and 0 <= g <= 100 and 150 <= b < 230:
         return "중간 보라색"
-    elif 165 <= r <= 210 and 165 <= g <= 210 and 165 <= b <= 210:
+    elif 150 <= r < 230 and 150 <= g < 230 and 200 <= b < 230:
         return "중간 분홍색"
 
     # 어두운 색 계열
-    elif 80 <= r <= 165 and 80 <= g <= 165 and 80 <= b <= 165:
+    elif 80 <= r < 150 and 80 <= g < 150 and 80 <= b < 150:
         return "어두운 회색"
-    elif 80 <= r <= 165 and 0 <= g <= 60 and 0 <= b <= 60:
+    elif 80 <= r < 150 and 0 <= g <= 60 and 0 <= b <= 60:
         return "어두운 빨간색"
-    elif 80 <= r <= 165 and 60 <= g <= 120 and 0 <= b <= 60:
+    elif 80 <= r < 150 and 60 < g <= 120 and 0 <= b <= 60:
         return "어두운 주황색"
-    elif 80 <= r <= 165 and 120 <= g <= 165 and 0 <= b <= 60:
+    elif 80 <= r < 150 and 120 < g <= 150 and 0 <= b <= 60:
         return "어두운 노란색"
-    elif 0 <= r <= 60 and 80 <= g <= 165 and 0 <= b <= 60:
+    elif 0 <= r <= 60 and 80 <= g < 150 and 0 <= b <= 60:
         return "어두운 초록색"
-    elif 0 <= r <= 60 and 0 <= g <= 60 and 80 <= b <= 165:
+    elif 0 <= r <= 60 and 0 <= g <= 60 and 80 <= b < 150:
         return "어두운 파랑색"
-    elif 0 <= r <= 60 and 80 <= g <= 165 and 80 <= b <= 165:
+    elif 0 <= r <= 60 and 80 <= g < 150 and 80 <= b < 150:
         return "어두운 청록색"
-    elif 80 <= r <= 165 and 0 <= g <= 60 and 80 <= b <= 165:
+    elif 80 <= r < 150 and 0 <= g <= 60 and 80 <= b < 150:
         return "어두운 보라색"
-    elif 80 <= r <= 165 and 80 <= g <= 165 and 80 <= b <= 165:
+    elif 80 <= r < 150 and 80 <= g < 150 and 100 <= b < 150:
         return "어두운 분홍색"
 
     # 특별 색상
@@ -273,10 +272,9 @@ def rgb_to_color_name(rgb):
     elif 180 <= r <= 200 and 120 <= g <= 180 and 60 <= b <= 120:
         return "갈색"
 
-    # 매칭되지 않는 경우
+    # 기본값 (모든 RGB는 위 조건에 포함되므로 이 값이 호출되지 않음)
     else:
         return "기타 색상"
-
 
 
 if __name__ == '__main__':
