@@ -199,30 +199,46 @@ def get_main_color(image, num_colors=1):
 
 
 def rgb_to_color_name(rgb):
-    """Convert RGB to a basic color name."""
+    """Convert RGB to a basic color name with extended range."""
     r, g, b = rgb
 
     # 색상 매칭 범위 설정
-    if r > 200 and g < 100 and b < 100:
+    if r > 180 and g < 80 and b < 80:
         return "빨강"
-    elif r > 200 and g > 150 and b < 100:
+    elif r > 200 and g > 120 and b < 80:
         return "주황"
     elif r > 200 and g > 200 and b < 100:
         return "노랑"
-    elif r < 100 and g > 200 and b < 100:
+    elif r < 120 and g > 180 and b < 120:
         return "초록"
-    elif r < 100 and g > 150 and b > 200:
+    elif r < 100 and g > 150 and b > 180:
+        return "청록"
+    elif r < 120 and g < 120 and b > 180:
         return "파랑"
-    elif r < 150 and g < 100 and b > 200:
-        return "보라"
-    elif r > 200 and g < 100 and b > 200:
+    elif r > 180 and g < 120 and b > 180:
         return "핑크"
-    elif r > 220 and g > 220 and b > 220:
+    elif r > 150 and g > 100 and b > 200:
+        return "보라"
+    elif r > 230 and g > 230 and b > 230:
         return "흰색"
     elif r < 50 and g < 50 and b < 50:
         return "검정색"
+    elif r > 150 and g > 150 and b > 150:
+        return "회색"
+    elif r > 170 and g > 130 and b > 100:
+        return "살구색"
+    elif r > 130 and g > 100 and b > 90:
+        return "갈색"
+    elif r < 100 and g > 80 and b < 80:
+        return "카키색"
+    elif r > 120 and g < 70 and b < 70:
+        return "벽돌색"
+    elif r < 120 and g < 120 and b > 120:
+        return "네이비"
+    elif r > 150 and g < 120 and b < 120:
+        return "분홍색"
     else:
-        return "알 수 없는 색상"
+        return "기타 색상"
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=8080, debug=True)
