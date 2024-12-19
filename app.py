@@ -3,10 +3,28 @@ from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 from ultralytics import YOLO
 from collections import Counter
+import boto3
+from io import BytesIO
 
 app = Flask(__name__)
 
 model = YOLO('yolov8n.pt')
+
+# 환경 변수에서 AWS S3 설정 가져오기
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_REGION = os.getenv('AWS_REGION')
+S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
+
+# AWS S3 설정
+s3_client = boto3.client(
+    's3',
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+    region_name=AWS_REGION
+)
+
+S3_BUCKET_NAME = 'boda-bucket'  
 
 @app.route('/')
 def hello_world():
@@ -87,6 +105,13 @@ def detect_objects():
             text_position = (x_min, y_min - 10)  # 텍스트 위치
             draw.text(text_position, label, fill="red",font=font)
 
+    try:
+        s3_url = save_image_to_s3(input_image, 'detected_image.png')
+        print(f"Image uploaded to S3: {s3_url}")
+    except Exception as e:
+        return jsonify({'error': f'Failed to upload image to S3: {str(e)}'}), 500
+
+
     # 결과 이미지를 저장
     output_image_path = "./detected_image1.png"  # 저장할 이미지 경로
     input_image.save(output_image_path)
@@ -94,17 +119,38 @@ def detect_objects():
 
     response = {
         'status': 'success',
-        'detections': detected_objects,
-        'total_detections': len(detected_objects)
+        'image':s3_url
+        # 'total_detections': len(detected_objects)
     }
     print(response);
 
     return jsonify(response), 200
 
+def save_image_to_s3(image, filename):
+    """
+    이미지 파일을 S3에 업로드하는 함수
+    """
+    buffer = BytesIO()
+    image.save(buffer, format='PNG')  # 이미지를 버퍼에 저장
+    buffer.seek(0)
+
+    s3_client.upload_fileobj(
+        buffer,
+        S3_BUCKET_NAME,
+        filename,
+        ExtraArgs={'ContentType': 'image/png'}
+    )
+
+    s3_url = f"https://{S3_BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com/{filename}"
+    return s3_url
 
 
 def get_main_color(image, num_colors=1):
     """Extract the main color from an image."""
+    
+    if image.mode != "RGB":
+        image = image.convert("RGB")
+        
     image = image.resize((50, 50))  
     pixels = np.array(image).reshape(-1, 3)  
     counter = Counter([tuple(pixel) for pixel in pixels])
