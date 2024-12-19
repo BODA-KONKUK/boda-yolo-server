@@ -219,7 +219,7 @@ def rgb_to_color_name(rgb):
         return "핑크"
     elif r > 150 and g > 100 and b > 200:
         return "보라"
-    elif r > 230 and g > 230 and b > 230:
+    elif r > 210 and g > 210 and b > 210:
         return "흰색"
     elif r < 50 and g < 50 and b < 50:
         return "검정색"
