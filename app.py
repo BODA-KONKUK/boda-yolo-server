@@ -201,44 +201,35 @@ def get_main_color(image, num_colors=1):
 
 
 def rgb_to_color_name(rgb):
-    """Convert RGB to a refined color name with range conditions."""
+    """Convert RGB to a refined color name with adjusted range conditions."""
     r, g, b = rgb
 
-    # 색상 매칭 범위 설정
-    if 180 <= r <= 255 and 0 <= g <= 100 and 0 <= b <= 100:
-        return "빨강"
-    elif 200 <= r <= 255 and 100 <= g <= 180 and 0 <= b <= 100:
-        return "주황"
-    elif 230 <= r <= 255 and 200 <= g <= 255 and 0 <= b <= 150:
-        return "노랑"
-    elif 0 <= r <= 120 and 180 <= g <= 255 and 0 <= b <= 120:
-        return "초록"
-    elif 0 <= r <= 120 and 150 <= g <= 255 and 150 <= b <= 255:
-        return "청록"
-    elif 0 <= r <= 120 and 0 <= g <= 150 and 180 <= b <= 255:
-        return "파랑"
-    elif 200 <= r <= 255 and 0 <= g <= 150 and 150 <= b <= 255:
-        return "핑크"
-    elif 150 <= r <= 200 and 0 <= g <= 120 and 150 <= b <= 255:
-        return "보라"
-    elif 230 <= r <= 255 and 230 <= g <= 255 and 230 <= b <= 255:
+    if 210 <= r <= 255 and 210 <= g <= 255 and 210 <= b <= 255:
         return "흰색"
-    elif 0 <= r <= 50 and 0 <= g <= 50 and 0 <= b <= 50:
+    elif 0 <= r <= 60 and 0 <= g <= 60 and 0 <= b <= 60:
         return "검정색"
-    elif 100 <= r <= 200 and 100 <= g <= 200 and 100 <= b <= 200:
+    elif 200 <= r <= 255 and 0 <= g <= 80 and 0 <= b <= 80:
+        return "빨간색"
+    elif 200 <= r <= 255 and 80 <= g <= 160 and 0 <= b <= 80:
+        return "주황색"
+    elif 200 <= r <= 255 and 180 <= g <= 255 and 0 <= b <= 80:
+        return "노란색"
+    elif 0 <= r <= 80 and 200 <= g <= 255 and 0 <= b <= 80:
+        return "초록색"
+    elif 0 <= r <= 80 and 0 <= g <= 80 and 200 <= b <= 255:
+        return "파랑색"
+    elif 0 <= r <= 80 and 180 <= g <= 255 and 200 <= b <= 255:
+        return "청록색"
+    elif 200 <= r <= 255 and 0 <= g <= 80 and 200 <= b <= 255:
+        return "보라색"
+    elif 200 <= r <= 255 and 150 <= g <= 200 and 200 <= b <= 255:
+        return "핑크색"
+    elif 120 <= r <= 200 and 120 <= g <= 200 and 120 <= b <= 200:
         return "회색"
-    elif 210 <= r <= 255 and 170 <= g <= 220 and 140 <= b <= 200:
-        return "살구색"
-    elif 120 <= r <= 160 and 80 <= g <= 130 and 60 <= b <= 110:
+    elif 180 <= r <= 220 and 120 <= g <= 180 and 60 <= b <= 120:
         return "갈색"
-    elif 60 <= r <= 120 and 100 <= g <= 160 and 60 <= b <= 100:
-        return "카키색"
-    elif 150 <= r <= 200 and 0 <= g <= 100 and 0 <= b <= 100:
-        return "벽돌색"
-    elif 0 <= r <= 80 and 0 <= g <= 80 and 100 <= b <= 180:
-        return "네이비"
-    elif 230 <= r <= 255 and 200 <= g <= 240 and 200 <= b <= 240:
-        return "연핑크"
+    elif 200 <= r <= 255 and 180 <= g <= 240 and 160 <= b <= 220:
+        return "살구색"
     else:
         return "기타 색상"
 
