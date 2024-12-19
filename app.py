@@ -201,37 +201,32 @@ def get_main_color(image, num_colors=1):
 
 
 def rgb_to_color_name(rgb):
-    """Convert RGB to a refined color name with adjusted range conditions."""
+    """Convert RGB to a refined color name with range conditions."""
     r, g, b = rgb
-
+    print(f"RGB: {r}, {g}, {b}")
+    
     if 210 <= r <= 255 and 210 <= g <= 255 and 210 <= b <= 255:
         return "흰색"
-    elif 0 <= r <= 60 and 0 <= g <= 60 and 0 <= b <= 60:
-        return "검정색"
-    elif 200 <= r <= 255 and 0 <= g <= 80 and 0 <= b <= 80:
+    elif 200 <= r <= 255 and 0 <= g <= 84 and 0 <= b <= 84:
         return "빨간색"
-    elif 200 <= r <= 255 and 80 <= g <= 160 and 0 <= b <= 80:
+    elif 200 <= r <= 255 and 84 <= g <= 200 and 0 <= b <= 84:
         return "주황색"
-    elif 200 <= r <= 255 and 180 <= g <= 255 and 0 <= b <= 80:
+    elif 200 <= r <= 255 and 200 <= g <= 255 and 0 <= b <= 84:
         return "노란색"
-    elif 0 <= r <= 80 and 200 <= g <= 255 and 0 <= b <= 80:
+    elif 0 <= r <= 84 and 200 <= g <= 255 and 0 <= b <= 84:
         return "초록색"
-    elif 0 <= r <= 80 and 0 <= g <= 80 and 200 <= b <= 255:
+    elif 0 <= r <= 84 and 0 <= g <= 84 and 200 <= b <= 255:
         return "파랑색"
-    elif 0 <= r <= 80 and 180 <= g <= 255 and 200 <= b <= 255:
+    elif 0 <= r <= 84 and 200 <= g <= 255 and 200 <= b <= 255:
         return "청록색"
-    elif 200 <= r <= 255 and 0 <= g <= 80 and 200 <= b <= 255:
+    elif 80 <= r <= 200 and 0 <= g <= 84 and 80 <= b <= 200:
         return "보라색"
-    elif 200 <= r <= 255 and 150 <= g <= 200 and 200 <= b <= 255:
+    elif 0 <= r <= 80 and 0 <= g <= 80 and 80 <= b <= 200:
+        return "남색"
+    elif 200 <= r <= 255 and 0 <= g <= 80 and 80 <= b <= 200:
         return "핑크색"
-    elif 120 <= r <= 200 and 120 <= g <= 200 and 120 <= b <= 200:
-        return "회색"
-    elif 180 <= r <= 220 and 120 <= g <= 180 and 60 <= b <= 120:
-        return "갈색"
-    elif 200 <= r <= 255 and 180 <= g <= 240 and 160 <= b <= 220:
-        return "살구색"
-    else:
-        return "기타 색상"
+    elif 0 <= r <= 50 and 0 <= g <= 50 and 0 <= b <= 50:
+        return "검정색"
 
 
 if __name__ == '__main__':
