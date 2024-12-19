@@ -205,28 +205,30 @@ def rgb_to_color_name(rgb):
     r, g, b = rgb
     print(f"RGB: {r}, {g}, {b}")
     
-    if 210 <= r <= 255 and 210 <= g <= 255 and 210 <= b <= 255:
+    if 165 <= r <= 255 and 165 <= g <= 255 and 165 <= b <= 255:
         return "흰색"
-    elif 200 <= r <= 255 and 0 <= g <= 84 and 0 <= b <= 84:
+    elif 165 <= r <= 255 and 0 <= g <= 84 and 0 <= b <= 84:
         return "빨간색"
-    elif 200 <= r <= 255 and 84 <= g <= 200 and 0 <= b <= 84:
+    elif 165 <= r <= 255 and 84 <= g <= 165 and 0 <= b <= 84:
         return "주황색"
-    elif 200 <= r <= 255 and 200 <= g <= 255 and 0 <= b <= 84:
+    elif 165 <= r <= 255 and 165 <= g <= 255 and 0 <= b <= 84:
         return "노란색"
-    elif 0 <= r <= 84 and 200 <= g <= 255 and 0 <= b <= 84:
+    elif 0 <= r <= 84 and 165 <= g <= 255 and 0 <= b <= 84:
         return "초록색"
-    elif 0 <= r <= 84 and 0 <= g <= 84 and 200 <= b <= 255:
+    elif 0 <= r <= 84 and 0 <= g <= 84 and 165 <= b <= 255:
         return "파랑색"
-    elif 0 <= r <= 84 and 200 <= g <= 255 and 200 <= b <= 255:
+    elif 0 <= r <= 84 and 165 <= g <= 255 and 165 <= b <= 255:
         return "청록색"
-    elif 80 <= r <= 200 and 0 <= g <= 84 and 80 <= b <= 200:
+    elif 80 <= r <= 165 and 0 <= g <= 84 and 80 <= b <= 165:
         return "보라색"
-    elif 0 <= r <= 80 and 0 <= g <= 80 and 80 <= b <= 200:
+    elif 0 <= r <= 80 and 0 <= g <= 80 and 80 <= b <= 165:
         return "남색"
-    elif 200 <= r <= 255 and 0 <= g <= 80 and 80 <= b <= 200:
+    elif 165 <= r <= 255 and 0 <= g <= 80 and 80 <= b <= 165:
         return "핑크색"
-    elif 0 <= r <= 50 and 0 <= g <= 50 and 0 <= b <= 50:
+    elif 0 <= r <= 84 and 0 <= g <= 84 and 0 <= b <= 84:
         return "검정색"
+    else: 
+        return "알 수 없는 색상"
 
 
 if __name__ == '__main__':
