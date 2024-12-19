@@ -61,7 +61,7 @@ def detect_objects():
     font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 
     try:
-        font = ImageFont.truetype(font_path, 30) 
+        font = ImageFont.truetype(font_path, 40) 
     except IOError:
         print(f"Font not found at {font_path}. Using default font.")
         font = ImageFont.load_default()
