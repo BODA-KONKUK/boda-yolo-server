@@ -111,7 +111,7 @@ def detect_objects():
         detected_objects.append(detected_object)
         # 이미지 위에 박스 그리기
         draw = ImageDraw.Draw(input_image)
-        draw.rectangle([x_min, y_min, x_max, y_max], outline=main_color, width=10)
+        draw.rectangle([x_min, y_min, x_max, y_max], outline="black", width=10)
 
         # 클래스 이름과 신뢰도를 박스 위에 추가 (옵션)
         if confidence is not None and class_idx is not None:
