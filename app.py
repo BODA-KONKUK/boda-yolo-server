@@ -61,7 +61,7 @@ def detect_objects():
     font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 
     try:
-        font = ImageFont.truetype(font_path, 40) 
+        font = ImageFont.truetype(font_path, 30) 
     except IOError:
         print(f"Font not found at {font_path}. Using default font.")
         font = ImageFont.load_default()
@@ -109,13 +109,22 @@ def detect_objects():
         detected_objects.append(detected_object)
         # 이미지 위에 박스 그리기
         draw = ImageDraw.Draw(input_image)
-        draw.rectangle([x_min, y_min, x_max, y_max], outline=main_color, width=20)
+        draw.rectangle([x_min, y_min, x_max, y_max], outline=main_color, width=10)
 
         # 클래스 이름과 신뢰도를 박스 위에 추가 (옵션)
         if confidence is not None and class_idx is not None:
             label = f"{class_name}"
-            text_position = (x_min, y_min - 10)  # 텍스트 위치
-            draw.text(text_position, label, fill=main_color,font=font)
+            text_width, text_height = draw.textsize(label, font=font)
+
+            # 텍스트의 최적 위치 계산 (텍스트가 박스 위에 표시되도록 조정)
+            text_x = x_min  # 텍스트는 박스의 왼쪽 상단 x_min에서 시작
+            text_y = max(0, y_min - text_height - 5)  # 텍스트가 이미지 경계를 벗어나지 않도록 보정
+
+            text_position = (text_x, text_y)
+
+            # 텍스트 추가
+            draw.text(text_position, label, fill=main_color, font=font)
+
 
     try:
         s3_url = save_image_to_s3(input_image, 'detected_image.png')
