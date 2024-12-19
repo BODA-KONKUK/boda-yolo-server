@@ -198,45 +198,47 @@ def get_main_color(image, num_colors=1):
     return most_common_color
 
 
+
+
 def rgb_to_color_name(rgb):
-    """Convert RGB to a basic color name with extended range."""
+    """Convert RGB to a refined color name."""
     r, g, b = rgb
 
     # 색상 매칭 범위 설정
-    if r > 180 and g < 80 and b < 80:
+    if r > 200 and g < 100 and b < 100:
         return "빨강"
-    elif r > 200 and g > 120 and b < 80:
+    elif r > 220 and g > 130 and b < 100:
         return "주황"
-    elif r > 200 and g > 200 and b < 100:
+    elif r > 240 and g > 240 and b < 120:
         return "노랑"
-    elif r < 120 and g > 180 and b < 120:
+    elif r < 100 and g > 200 and b < 100:
         return "초록"
-    elif r < 100 and g > 150 and b > 180:
+    elif r < 120 and g > 190 and b > 180:
         return "청록"
-    elif r < 120 and g < 120 and b > 180:
+    elif r < 100 and g < 150 and b > 200:
         return "파랑"
-    elif r > 180 and g < 120 and b > 180:
+    elif r > 200 and g < 150 and b > 200:
         return "핑크"
-    elif r > 150 and g > 100 and b > 200:
+    elif r > 170 and g < 120 and b > 180:
         return "보라"
-    elif r > 210 and g > 210 and b > 210:
+    elif r > 240 and g > 240 and b > 240:
         return "흰색"
     elif r < 50 and g < 50 and b < 50:
         return "검정색"
-    elif r > 150 and g > 150 and b > 150:
+    elif 100 < r < 200 and 100 < g < 200 and 100 < b < 200:
         return "회색"
-    elif r > 170 and g > 130 and b > 100:
+    elif r > 210 and g > 170 and b > 140:
         return "살구색"
-    elif r > 130 and g > 100 and b > 90:
+    elif r > 160 and g > 120 and b > 90:
         return "갈색"
-    elif r < 100 and g > 80 and b < 80:
+    elif r < 120 and 80 < g < 160 and b < 100:
         return "카키색"
-    elif r > 120 and g < 70 and b < 70:
+    elif r > 150 and g < 80 and b < 80:
         return "벽돌색"
-    elif r < 120 and g < 120 and b > 120:
+    elif r < 80 and g < 80 and b > 120:
         return "네이비"
-    elif r > 150 and g < 120 and b < 120:
-        return "분홍색"
+    elif r > 230 and g > 200 and b > 200:
+        return "연핑크"
     else:
         return "기타 색상"
 
