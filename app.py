@@ -41,16 +41,17 @@ def detect_objects():
         return jsonify({'error': 'No file uploaded'}), 400
 
     file = request.files['file']
-    
-    input_image = Image.open(file)
-    # input_image = input_image.transpose(Image.ROTATE_90)
-    print(f"Uploaded image size: {input_image.size}")
 
-    # try:
-    #     # 업로드된 파일을 이미지로 변환
-    #     image = Image.open(file.stream).convert("RGB")
-    # except Exception as e:
-    #     return jsonify({'error': f'Invalid image format: {str(e)}'}), 400
+    try:
+        # 업로드된 파일을 이미지로 변환
+        input_image = Image.open(file).convert("RGB")
+        print(f"Original image size: {input_image.size}")
+
+        # 가로와 세로를 변경 (90도 회전)
+        input_image = input_image.transpose(Image.ROTATE_90)
+        print(f"Rotated image size: {input_image.size}")
+    except Exception as e:
+        return jsonify({'error': f'Invalid image format: {str(e)}'}), 400
 
     # YOLOv8 모델로 객체 탐지
     results = model(input_image)
