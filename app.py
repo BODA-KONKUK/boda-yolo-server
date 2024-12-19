@@ -20,6 +20,7 @@ def detect_objects():
     file = request.files['file']
     
     input_image = Image.open(file)
+    print(f"Uploaded image size: {input_image.size}")
 
     try:
         # 업로드된 파일을 이미지로 변환
