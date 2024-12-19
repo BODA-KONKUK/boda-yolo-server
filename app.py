@@ -89,9 +89,10 @@ def detect_objects():
         # 박스 내부 이미지 추출
         cropped_box = input_image.crop((x_min, y_min, x_max, y_max))
         # 주요 색상 추출
-        main_color = get_main_color(cropped_box)
+        main_color_rgb = get_main_color(cropped_box)
+        main_color_name = rgb_to_color_name(main_color_rgb) 
 
-        print(f"Detected object: {x_min}, {y_min}, {x_max}, {y_max}, confidence: {confidence}, class: {class_name}, main color: {main_color}")
+        print(f"Detected object: {x_min}, {y_min}, {x_max}, {y_max}, confidence: {confidence}, class: {class_name}, main color: {main_color_rgb}")
 
         detected_object = {
             'bounding_box': {
@@ -115,7 +116,7 @@ def detect_objects():
 
         # 클래스 이름과 신뢰도를 박스 위에 추가 (옵션)
         if confidence is not None and class_idx is not None:
-            label = f"{class_name}"
+            label = f"{main_color_name}"
                 # 텍스트 경계 상자 계산
             bbox = draw.textbbox((0, 0), label, font=font)  # (0, 0)은 임시 위치
             text_width = bbox[2] - bbox[0]  # 너비 계산
@@ -128,9 +129,7 @@ def detect_objects():
             text_position = (text_x, text_y)
 
             # 텍스트 추가
-            draw.text(text_position, label, fill=main_color, font=font)
-
-
+            draw.text(text_position, label, fill=main_color_rgb, font=font)
 
     try:
         s3_url = save_image_to_s3(input_image, 'detected_image.png')
@@ -197,6 +196,32 @@ def get_main_color(image, num_colors=1):
     most_common_color = counter.most_common(1)[0][0]  
     return most_common_color
 
+
+def rgb_to_color_name(rgb):
+    """Convert RGB to a basic color name."""
+    r, g, b = rgb
+
+    # 색상 매칭 범위 설정
+    if r > 200 and g < 100 and b < 100:
+        return "빨강"
+    elif r > 200 and g > 150 and b < 100:
+        return "주황"
+    elif r > 200 and g > 200 and b < 100:
+        return "노랑"
+    elif r < 100 and g > 200 and b < 100:
+        return "초록"
+    elif r < 100 and g > 150 and b > 200:
+        return "파랑"
+    elif r < 150 and g < 100 and b > 200:
+        return "보라"
+    elif r > 200 and g < 100 and b > 200:
+        return "핑크"
+    elif r > 220 and g > 220 and b > 220:
+        return "흰색"
+    elif r < 50 and g < 50 and b < 50:
+        return "검정색"
+    else:
+        return "알 수 없는 색상"
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=8080, debug=True)
