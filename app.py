@@ -240,7 +240,7 @@ def rgb_to_color_name(rgb):
     elif 171 <= r <= 255 and 0 <= g <= 84 and 84 <= b <= 171:
         return "핑크색"
     elif 171 <= r <= 255 and 84 <= g <= 171 and 84 <= b <= 171:
-        return "연핑크색"
+        return "연한 갈색"
     elif 171 <= r <= 255 and 171 <= g <= 255 and 84 <= b <= 171:
         return "연한 노랙색"
     
