@@ -43,6 +43,7 @@ def detect_objects():
     file = request.files['file']
     
     input_image = Image.open(file)
+    input_image = input_image.transpose(Image.ROTATE_90)
     print(f"Uploaded image size: {input_image.size}")
 
     try:
