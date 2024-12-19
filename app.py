@@ -61,11 +61,12 @@ def detect_objects():
     confidence_threshold = 0.5
     
     font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+    font_path_korean = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"
 
     try:
-        font = ImageFont.truetype(font_path, 40) 
+        font = ImageFont.truetype(font_path_korean, 40) 
     except IOError:
-        print(f"Font not found at {font_path}. Using default font.")
+        print(f"Font not found at {font_path_korean}. Using default font.")
         font = ImageFont.load_default()
 
     
@@ -92,7 +93,7 @@ def detect_objects():
         main_color_rgb = get_main_color(cropped_box)
         main_color_name = rgb_to_color_name(main_color_rgb) 
 
-        print(f"Detected object: {x_min}, {y_min}, {x_max}, {y_max}, confidence: {confidence}, class: {class_name}, main color: {main_color_rgb}")
+        print(f"Detected object: {x_min}, {y_min}, {x_max}, {y_max}, confidence: {confidence}, class: {class_name}, main color: {main_color_name}")
 
         detected_object = {
             'bounding_box': {
