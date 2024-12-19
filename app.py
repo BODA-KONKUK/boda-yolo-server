@@ -178,8 +178,21 @@ def get_main_color(image, num_colors=1):
     if image.mode != "RGB":
         image = image.convert("RGB")
         
-    image = image.resize((50, 50))  
-    pixels = np.array(image).reshape(-1, 3)  
+        # 이미지 크기 가져오기
+    width, height = image.size
+
+    # 중앙 부분 잘라내기 (가로 반, 세로 반)
+    left = width // 4
+    upper = height // 4
+    right = 3 * (width // 4)
+    lower = 3 * (height // 4)
+    cropped_image = image.crop((left, upper, right, lower))
+
+    # 크롭된 이미지를 50x50으로 축소
+    cropped_image = cropped_image.resize((50, 50))
+        
+    # image = image.resize((50, 50))  
+    pixels = np.array(cropped_image).reshape(-1, 3)  
     counter = Counter([tuple(pixel) for pixel in pixels])
     most_common_color = counter.most_common(1)[0][0]  
     return most_common_color
