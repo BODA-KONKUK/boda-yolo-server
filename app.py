@@ -1,3 +1,4 @@
+import os  
 from flask import Flask, request, jsonify
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
@@ -5,6 +6,10 @@ from ultralytics import YOLO
 from collections import Counter
 import boto3
 from io import BytesIO
+from dotenv import load_dotenv
+
+# .env 파일 로드
+load_dotenv()
 
 app = Flask(__name__)
 
