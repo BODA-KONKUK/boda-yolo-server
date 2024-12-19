@@ -114,7 +114,10 @@ def detect_objects():
         # 클래스 이름과 신뢰도를 박스 위에 추가 (옵션)
         if confidence is not None and class_idx is not None:
             label = f"{class_name}"
-            text_width, text_height = draw.textsize(label, font=font)
+                # 텍스트 경계 상자 계산
+            bbox = draw.textbbox((0, 0), label, font=font)  # (0, 0)은 임시 위치
+            text_width = bbox[2] - bbox[0]  # 너비 계산
+            text_height = bbox[3] - bbox[1]  # 높이 계산
 
             # 텍스트의 최적 위치 계산 (텍스트가 박스 위에 표시되도록 조정)
             text_x = x_min  # 텍스트는 박스의 왼쪽 상단 x_min에서 시작
@@ -124,6 +127,7 @@ def detect_objects():
 
             # 텍스트 추가
             draw.text(text_position, label, fill=main_color, font=font)
+
 
 
     try:
