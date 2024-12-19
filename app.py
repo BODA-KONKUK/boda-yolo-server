@@ -58,7 +58,14 @@ def detect_objects():
     # 신뢰도
     confidence_threshold = 0.5
     
-    font = ImageFont.load_default()
+    font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+
+    try:
+        font = ImageFont.truetype(font_path, 40) 
+    except IOError:
+        print(f"Font not found at {font_path}. Using default font.")
+        font = ImageFont.load_default()
+
     
     # 결과를 JSON 형식으로 변환
     detected_objects = []
@@ -102,13 +109,13 @@ def detect_objects():
         detected_objects.append(detected_object)
         # 이미지 위에 박스 그리기
         draw = ImageDraw.Draw(input_image)
-        draw.rectangle([x_min, y_min, x_max, y_max], outline=main_color, width=10)
+        draw.rectangle([x_min, y_min, x_max, y_max], outline=main_color, width=20)
 
         # 클래스 이름과 신뢰도를 박스 위에 추가 (옵션)
         if confidence is not None and class_idx is not None:
-            label = f"{class_name} {confidence:.2f}"
+            label = f"{class_name}"
             text_position = (x_min, y_min - 10)  # 텍스트 위치
-            draw.text(text_position, label, fill="red",font=font)
+            draw.text(text_position, label, fill=main_color,font=font)
 
     try:
         s3_url = save_image_to_s3(input_image, 'detected_image.png')
