@@ -205,10 +205,6 @@ def rgb_to_color_name(rgb):
     r, g, b = rgb
     print(f"RGB: {r}, {g}, {b}")
     
-    def rgb_to_color_name(rgb):
-    """Convert RGB to one of 27 colors."""
-    r, g, b = rgb
-
     # 밝은 색 계열
     if 210 <= r <= 255 and 210 <= g <= 255 and 210 <= b <= 255:
         return "흰색"
