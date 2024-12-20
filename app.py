@@ -113,7 +113,7 @@ def detect_objects():
         detected_objects.append(detected_object)
         # 이미지 위에 박스 그리기
         draw = ImageDraw.Draw(input_image)
-        draw.rectangle([x_min, y_min, x_max, y_max], outline="black", width=10)
+        draw.rectangle([x_min, y_min, x_max, y_max], outline="black", width=12)
 
         # 클래스 이름과 신뢰도를 박스 위에 추가 (옵션)
         if confidence is not None and class_idx is not None:
@@ -129,8 +129,12 @@ def detect_objects():
 
             text_position = (text_x, text_y)
 
-            # 텍스트 추가
-            draw.text(text_position, label, fill=main_color_rgb, font=font)
+            draw.rectangle(
+                [text_x, text_y, text_x + text_width, text_y + text_height],
+                fill=main_color_rgb
+            )
+
+            draw.text(text_position, label, fill="white", font=font)
 
     try:
         s3_url = save_image_to_s3(input_image, 'detected_image.png')
